@@ -24,6 +24,21 @@ is currently the most promising approach. The whole project has been developed o
 
 In the following sections you will find further details and instructions on how to complete the steps that were outlined above.
 
+## Installing Tensorflow
+
+Before gathering all the data needed, you will have to install Tensorflow. 
+This project was developed under Tensorflow 1.0.1, so more recent 
+versions might not be compatible. More information on how to install 
+Tensorflow, can be found on [this page](https://www.tensorflow.org/install/). 
+
+We are making use of the textsum model provided [here](https://github.com/tensorflow/models/tree/master/textsum). 
+So on top of Tensorflow, textsum must be configured and build with bazel, as described in the github repository.
+
+Since we did not have articles with their summaries to use as a training set, our initial effort was to train a model that would generate 
+titles of articles given their body/text.
+Based on the results of that effort we will then move on to attempt training a model for text summarization.
+
+
 ## Content Data
 To get started you first need to get hold of the data (articles and their 
 metadata), to do that you will need keys to access the search API and the 
@@ -40,16 +55,6 @@ file, containing all the tokens encountered along with their absolute frequencie
 As of March 2017, a bit more than half a millions articles were available and were retrieved.
 In order to train the model a large amount of data-articles is needed, this experiment was done using around 500,000 articles
 for training the model. 
-
-After gathering all the data needed, you will have to install Tensorflow. 
-This project was developed under Tensorflow 1.0.1, so more recent 
-versions might not be compatible. More information on how to install 
-Tensorflow, can be found on [this page](https://www.tensorflow.org/install/). 
-
-We are making use of the textsum model provided [here](https://github.com/tensorflow/models/tree/master/textsum).
-Since we did not have articles with their summaries to use as a training set, our initial effort was to train a model that would generate 
-titles of articles given their body/text.
-Based on the results of that effort we will then move on to attempt training a model for text summarization.
 
 ## Training
 

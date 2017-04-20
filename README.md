@@ -2,7 +2,7 @@
 
 *Another document containing all the information relevant to this project, can be found* [here](https://docs.google.com/document/d/1NBYFPBjO3Fqwv7RFy4imiMDRkBLxr1GF39RrHuslQFA/edit#)
 
-**Outline**
+## Outline
 - S-API, search for articles
 - C-API, retrieve the articles
 - Transform the articles in the appropriate form, so that we can train, evaluate and test the DNN on them
@@ -13,7 +13,7 @@
 	* Define the parameters' values (data_path, vocab_path, article_key, abstract_key, learning rate, layers etc) or go with their defaults and start the training
 	* Run evaluation as the training goes on in order to see how the performance of the model improves towards unseen data
 	* Test the model (mode= decode) to receive predictions, either on unseen or training data
-	* Use Tensorboard to visualize parameters and the values of useful metrics
+	* Use Tensorboard to visualize parameters and the values of several metrics
 - Share the trained model both through the EC2 instance and/or as a copy distributed to other local machines
 
 
@@ -24,25 +24,22 @@ is currently the most promising approach. The whole project has been developed o
 
 In the following sections you will find further details and instructions on how to complete the steps that were outlined above.
 
-**Content Data**
+## Content Data
 To get started you first need to get hold of the data (articles and their 
 metadata), to do that you will need keys to access the search API and the 
 content API. Then set SAPI_key and CAPI_key environment variables with their 
 corresponding values and run the ft-content-tensorflow.ipynb, this is an 
 IPython script so you will need to install IPython notebooks in order to run 
 it, more info on that can be found [here](https://ipython.org/install.html). 
-After running this script you should have a separate json file for each 
+After running the relevant parts of this script you should have a separate json file for each 
 article published from 2008 and on. The json files will be organised in 
-folders based on the year and the month they were published. Then you will also
-have aggregated files with content text data for each month and each year.
-A corresponding vocabulary is also constructed from each content text data 
-file, containing all the tokens encountered along with their absolute
-frequencies.
-As of March 2017, a bit more than half a millions articles were available and 
-were retrieved.
-In order to train the model a large amount of data-articles is needed, anything 
-around 500,000 articles should be sufficient. 
-
+folders based on the year and the month they were published. You will also
+have aggregated files with content data in text format for each month and each year.
+A corresponding vocabulary is also constructed from each content data text 
+file, containing all the tokens encountered along with their absolute frequencies.
+As of March 2017, a bit more than half a millions articles were available and were retrieved.
+In order to train the model a large amount of data-articles is needed, this experiment was done using around 500,000 articles
+for training the model. 
 
 After gathering all the data needed, you will have to install Tensorflow. 
 This project was developed under Tensorflow 1.0.1, so more recent 
@@ -50,10 +47,11 @@ versions might not be compatible. More information on how to install
 Tensorflow, can be found on [this page](https://www.tensorflow.org/install/). 
 
 We are making use of the textsum model provided [here](https://github.com/tensorflow/models/tree/master/textsum).
-Our initial effort was to train a model that would generate titles of articles given their body/text.
-Based on the results of that project we will then move on to attempt training a model for text summarization.
+Since we did not have articles with their summaries to use as a training set, our initial effort was to train a model that would generate 
+titles of articles given their body/text.
+Based on the results of that effort we will then move on to attempt training a model for text summarization.
 
-**Training**
+## Training
 
 The training set needs to have the same structure as the text-data-sample file provided 
 and it needs to be converted to binary before the model can train on it. To convert the 
@@ -74,7 +72,10 @@ We can also define the number of maximum epochs that we want the training to run
 adding: "--max_run_steps={number of maximum epochs}" .
 
 
-**Evaluating**
+## Evaluating
+
+Evaluation should be performed as we train the model, to make sure our model is generalising correctly and is not overfitting on the training set.
+Running evaluation on unseen data is crucial, to achieve the above and identify when the training process should be stopped.
 
 bazel-bin/textsum/seq2seq_attention \
 --mode=train \
@@ -89,7 +90,11 @@ We can also define the number of maximum epochs that we want the evaluation to r
 adding: "--max_run_steps={number of maximum epochs}" .
 
 
-**Decoding**
+## Decoding
+
+In order to get predictions (titles, summaries or whatever our model is supposed to generate), we need to run our model with "mode=decode",
+we can also define the beam_size which is the number of possible predictions our model will generate before it decides which one is the best.
+
 
 bazel-bin/textsum/seq2seq_attention \
 --mode=decode \
@@ -101,9 +106,9 @@ bazel-bin/textsum/seq2seq_attention \
 --log_root=textsum/log_root \
 --eval_dir=textsum/log_root/eval
 
-**Moving the already trained model**
+## Moving the already trained model
 
-While training the model we can then move it to another machine to continue the training or use the model to see how it
-performs. In order to do that we just need to copy the log_root folder, which contains the most recent checkpoints that 
-were created during the training. Pasting the log_root folder inside the textsum directory of a project already built with bazel,
-will carry over everything that is needed to have an identical model.
+Moving an already existing/trained model to another machine either to continue training or use it to get some results, is a very easy task.
+Just copy the log_root folder, as defined during the training, evaluation and decoding process. This folder contains the most recent checkpoints that 
+were created during the training, the results produced when decoding and the evaluation scores. Pasting the log_root folder inside the textsum directory of a project already built with bazel,
+will create an identical model ready to use.

@@ -112,3 +112,11 @@ Moving an already existing/trained model to another machine either to continue t
 Just copy the log_root folder, as defined during the training, evaluation and decoding process. This folder contains the most recent checkpoints that 
 were created during the training, the results produced when decoding and the evaluation scores. Pasting the log_root folder inside the textsum directory of a project already built with bazel,
 will create an identical model ready to use.
+
+## Relevant projects & Useful links
+
+1. [Sumy](https://pypi.python.org/pypi/sumy)
+2. [Gensim](https://github.com/RaRe-Technologies/gensim)
+3. [Smmry](http://smmry.com/about)
+4. [TextSum on GPU](https://eilianyu.wordpress.com/2016/10/17/text-summarization-using-sequence-to-sequence-model-in-tensorflow-and-gpu-computing/)
+5. [Improved text summarization model](http://www.abigailsee.com/2017/04/16/taming-rnns-for-better-summarization.html)

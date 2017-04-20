@@ -51,7 +51,7 @@ article published from 2008 and on. The json files will be organised in
 folders based on the year and the month they were published. You will also
 have aggregated files with content data in text format for each month and each year.
 A corresponding vocabulary is also constructed from each content data text 
-file, containing all the tokens encountered along with their absolute frequencies.
+file, containing all the tokens encountered along with their absolute frequencies and finally merged into an aggregated vocabulary containing the 300,000 most common tokens. In order to reduce the number of unique tokens and make training more efficient we convert all tokens to lowercase, this is optional.
 As of March 2017, a bit more than half a millions articles were available and were retrieved.
 In order to train the model a large amount of data-articles is needed, this experiment was done using around 500,000 articles
 for training the model. 

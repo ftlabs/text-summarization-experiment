@@ -41,8 +41,8 @@ Based on the results of that effort we will then move on to attempt training a m
 
 ## Content Data
 To get started you first need to get hold of the data (articles and their 
-metadata), to do that you will need keys to access the search API and the 
-content API. Then set SAPI_key and CAPI_key environment variables with their 
+metadata), to do that you will need keys to [access the search API and the 
+content API](https://developer.ft.com/docs). Then set SAPI_key and CAPI_key environment variables with their 
 corresponding values and run the ft-content-tensorflow.ipynb, this is an 
 IPython script so you will need to install IPython notebooks in order to run 
 it, more info on that can be found [here](https://ipython.org/install.html). 
@@ -51,7 +51,7 @@ article published from 2008 and on. The json files will be organised in
 folders based on the year and the month they were published. You will also
 have aggregated files with content data in text format for each month and each year.
 A corresponding vocabulary is also constructed from each content data text 
-file, containing all the tokens encountered along with their absolute frequencies.
+file, containing all the tokens encountered along with their absolute frequencies and finally merged into an aggregated vocabulary containing the 300,000 most common tokens. In order to reduce the number of unique tokens and make training more efficient we convert all tokens to lowercase, this is optional.
 As of March 2017, a bit more than half a millions articles were available and were retrieved.
 In order to train the model a large amount of data-articles is needed, this experiment was done using around 500,000 articles
 for training the model. 

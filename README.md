@@ -41,8 +41,8 @@ Based on the results of that effort we will then move on to attempt training a m
 
 ## Content Data
 To get started you first need to get hold of the data (articles and their 
-metadata), to do that you will need keys to access the search API and the 
-content API. Then set SAPI_key and CAPI_key environment variables with their 
+metadata), to do that you will need keys to [access the search API and the 
+content API](https://developer.ft.com/docs). Then set SAPI_key and CAPI_key environment variables with their 
 corresponding values and run the ft-content-tensorflow.ipynb, this is an 
 IPython script so you will need to install IPython notebooks in order to run 
 it, more info on that can be found [here](https://ipython.org/install.html). 

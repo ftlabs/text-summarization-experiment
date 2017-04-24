@@ -125,3 +125,4 @@ will create an identical model ready to use.
 3. [Smmry](http://smmry.com/about)
 4. [TextSum on GPU](https://eilianyu.wordpress.com/2016/10/17/text-summarization-using-sequence-to-sequence-model-in-tensorflow-and-gpu-computing/)
 5. [Improved text summarization model](http://www.abigailsee.com/2017/04/16/taming-rnns-for-better-summarization.html)
+6. [Keyword Generator](https://github.com/jlonij/keyword-generator)

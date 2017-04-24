@@ -1,6 +1,6 @@
 # FTLabs Tensorflow Project
 
-*Another document containing all the information relevant to this project, can be found* [here](https://docs.google.com/document/d/1NBYFPBjO3Fqwv7RFy4imiMDRkBLxr1GF39RrHuslQFA/edit#)
+*Another document containing more information relevant to this project, can be found* [here](https://docs.google.com/document/d/1NBYFPBjO3Fqwv7RFy4imiMDRkBLxr1GF39RrHuslQFA/edit#)
 
 ## Outline
 - S-API, search for articles

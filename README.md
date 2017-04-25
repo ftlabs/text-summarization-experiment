@@ -116,7 +116,7 @@ bazel-bin/textsum/seq2seq_attention \
 Moving an already existing/trained model to another machine either to continue training or use it to get some results, is a very easy task.
 Just copy the log_root folder, as defined during the training, evaluation and decoding process. This folder contains the most recent checkpoints that 
 were created during the training, the results produced when decoding and the evaluation scores. Pasting the log_root folder inside the textsum directory of a project already built with bazel,
-will create an identical model ready to use.
+will create an identical model ready to use. The vocabulary used should be the same as the one used when training the model.
 
 ## Relevant projects & Useful links
 
